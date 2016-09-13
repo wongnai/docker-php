@@ -4,7 +4,7 @@ MAINTAINER Suparit Krityakien <suparit@wongnai.com>
 
 RUN a2enmod rewrite expires headers
 
-RUN apt-get update && apt-get install -y libpng12-dev libjpeg-dev ssmtp && rm -rf /var/lib/apt/lists/* \
+RUN apt-get update && apt-get install -y libpng12-dev libjpeg-dev && rm -rf /var/lib/apt/lists/* \
 	&& docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
 	&& docker-php-ext-install gd mysqli opcache \
 	&& { \
@@ -15,9 +15,6 @@ RUN apt-get update && apt-get install -y libpng12-dev libjpeg-dev ssmtp && rm -r
 		echo 'opcache.fast_shutdown=1'; \
 		echo 'opcache.enable_cli=1'; \
 	} > /usr/local/etc/php/conf.d/opcache-recommended.ini
-
-ADD ssmtp.conf /etc/ssmtp/ssmtp.conf
-ADD php-smtp.ini /usr/local/etc/php/conf.d/php-smtp.ini
 
 WORKDIR /var/www/html
 
