@@ -1,4 +1,4 @@
-FROM php:5.6.28-apache
+FROM php:7.0.13-apache
 
 MAINTAINER Suparit Krityakien <suparit@wongnai.com>
 
